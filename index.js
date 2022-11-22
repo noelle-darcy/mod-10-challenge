@@ -4,6 +4,7 @@ const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern'); 
 const Manager = require('./lib/manager');
 const { create } = require('domain');
+const HTMLgenerator = require("./src/HTMLgenerator");
 
 const teamArray = [];
 
@@ -30,7 +31,7 @@ function createTeam () {
             break;
 
             default: 
-            htmlGenerator();
+            fileWriter();
         }
     })
 }
@@ -149,11 +150,10 @@ function addEngineer() {
     });
 }
 
-function htmlGenerator () {
-    console.log("Team Created!!");
-    console.log(teamArray);
+function fileWriter () {
+    console.log("File Created")
+    fs.writeFileSync('./dist/index.html', HTMLgenerator(teamArray))
 }
-
 // addManager(); 
 
 createTeam();
